@@ -8,8 +8,11 @@ G = nx.Graph()
 for edge in edges:
     if len(edge) == 1:
         G.add_node(edge[0])
-    else:
+    elif len(edge) == 2:
         G.add_edge(edge[0], edge[1])
+    else:
+        print('Неправильный ввод ребер')
+        break
 
 nx.draw(G, with_labels=True)
 plt.show()
