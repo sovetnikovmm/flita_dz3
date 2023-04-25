@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 
 with open('list_of_edges.txt', 'r') as file:
     edges = [line.strip().split() for line in file]
+    print(edges)
 
 G = nx.Graph()
 for edge in edges:
@@ -11,13 +12,13 @@ for edge in edges:
     elif len(edge) == 2:
         G.add_edge(edge[0], edge[1])
     else:
-        print('Неправильный ввод ребер')
+        print('Invalid input of edges')
         break
 
 nx.draw(G, with_labels=True)
 plt.show()
-
-if nx.is_connected(G):
-    print("Граф связный")
+print("By the graph connectivity theorem:")
+if len(G.edges) > (len(G.nodes)-1)*(len(G.nodes)-2)*0.5:
+    print("Graph is connected")
 else:
-    print("Граф несвязный")
+    print("Graph is not connected")
